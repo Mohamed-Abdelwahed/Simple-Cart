@@ -5,21 +5,23 @@ import Product from './Product';
 
 class ShooppingCart extends Component {
   render() {
+    console.log("Shopping Cart is ==> Rendering");
+    const {products , onReset, onDel, onIncrement } = this.props;
     return (
       <>
         <h1 className="bg-success text-light p-4">ShooppingCart</h1>
-        <button className="btn btn-secondary mx-5" onClick={this.props.onReset}>
+        <button className="btn btn-secondary mx-5" onClick={onReset}>
           Reset
         </button>
-        {this.props.products.map((myprod, index) => {
+        {products.map((myprod, index) => {
           return (
             <Product
               key={index}
               pr={myprod}
 
-              onDel={this.props.onDel}
+              onDel={onDel}
               
-              onIncreas={this.props.onIncrement}
+              onIncreas={onIncrement}
             />
           );
         })}

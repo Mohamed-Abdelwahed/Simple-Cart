@@ -1,45 +1,41 @@
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 const Navbar = props => {
 
    
     return (
       <>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-          <div className="container-fluid bg-dark py-3 text-light">
-            <a className="navbar-brand text-light">Navbar</a>
+        <nav
+          className="navbar navbar-expand-lg bg-body-tertiary sticky-top myStyles"
+          data-bs-theme="dark"
+        >
+          <div className="container-fluid  py-3 ">
+            <NavLink className="navbar-brand ">Navbar</NavLink>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link
-                    className="nav-link text-light"
-                    aria-current="page"
-                    to="/"
-                  >
+                  <NavLink className="nav-link " aria-current="page" to="/">
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-light" to="/about">
+                  <NavLink className="nav-link " to="/about">
                     About
-                  </Link>
+                  </NavLink>
                 </li>
-                <li className="nav-item text-light">
-                  <Link className="nav-link text-light" to="/contact">
+                <li className="nav-item ">
+                  <NavLink className="nav-link " to="/contact">
                     Conatct
-                  </Link>
+                  </NavLink>
                 </li>
-                <li className="nav-item text-light">
-                  <Link className="nav-link text-light" to="/cart">
+                <li className="nav-item ">
+                  <NavLink className="nav-link " to="/cart">
                     Shopping Cart
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>
 
-            <span className="btn btn-warning text-light">
-              {props.productCount}
-            </span>
+            <span className="btn btn-warning ">{props.productCount}</span>
           </div>
         </nav>
       </>

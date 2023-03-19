@@ -4,8 +4,12 @@ import ShooppingCart from './Components/ShoppingCart';
 import About from './Components/About';
 import Home from './Components/Home';
 import Conatct from './Components/Contact';
-import { Route, Routes} from 'react-router-dom';
+import Team from './Components/Team';
+import Company from './Components/Company';
+import { Route, Routes ,Navigate } from 'react-router-dom';
 import Details from './Components/Details';
+import NotFound from './Components/NotFound';
+
 
 class App extends Component {
   state = {
@@ -54,10 +58,12 @@ class App extends Component {
         <Routes>
           <Route
             path="/product/:id/:name?/:test?"
-           
             element={<Details products={this.state.products} />}
           />
-          <Route path="/about" Component={About} />
+          <Route path="/about" element={<About/>}>
+              <Route path="team" element={<Team/>} />
+              <Route path="company" element={<Company/>} />
+          </Route>
           <Route path="/contact" Component={Conatct} />
           <Route
             path="/cart"
@@ -72,7 +78,10 @@ class App extends Component {
               </main>
             }
           />
-          <Route path="/" Component={Home} />
+          <Route path="/notfound" element={<NotFound />} />
+          <Route path="/" exact Component={Home} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/notfound" replace />} />
         </Routes>
         {/* <main className='container'>
           <ShooppingCart products={this.state.products} onIncrement={this.handleIncrease} onDel={this.handelDelete} onReset={this.handleReset} />
