@@ -9,18 +9,18 @@ import Company from './Components/Company';
 import { Route, Routes ,Navigate } from 'react-router-dom';
 import Details from './Components/Details';
 import NotFound from './Components/NotFound';
+import Menu from './Components/Menu';
 
 
 class App extends Component {
   state = {
     products: [
-      { id: 1, name: "Burger", count: 2 },
-      { id: 2, name: "Cola", count: 0 },
-      { id: 3, name: "Shaowrma", count: 9 },
-      { id: 4, name: "Salad", count: 5 },
+      { id: 1, name: "Burger", count: 1, price: 15, isInCart: false },
+      { id: 2, name: "Cola", count: 1, price: 52, isInCart: false },
+      { id: 3, name: "Shaowrma", count: 1, price: 16, isInCart: false },
+      { id: 4, name: "Salad", count: 1, price: 20, isInCart: false },
     ],
   };
-  
 
   handelDelete = (prod) => {
     const products = this.state.products.filter((p) => p.id !== prod.id);
@@ -49,6 +49,16 @@ class App extends Component {
 
     this.setState({ products });
   };
+
+
+  handelInCartChange = product =>{
+    const products = [...this.state.products]
+    const index = products.indexOf(product)
+    products[index] = {...products[index]}
+
+    products[index].isInCart = !products[index].isInCart
+    this.setState({products})
+  }
   render() {
     return (
       <>
@@ -60,9 +70,9 @@ class App extends Component {
             path="/product/:id/:name?/:test?"
             element={<Details products={this.state.products} />}
           />
-          <Route path="/about" element={<About/>}>
-              <Route path="team" element={<Team/>} />
-              <Route path="company" element={<Company/>} />
+          <Route path="/about" element={<About />}>
+            <Route path="team" element={<Team />} />
+            <Route path="company" element={<Company />} />
           </Route>
           <Route path="/contact" Component={Conatct} />
           <Route
@@ -70,12 +80,21 @@ class App extends Component {
             element={
               <main className="container">
                 <ShooppingCart
-                  products={this.state.products}
+                  products={this.state.products.filter(p=>p.isInCart)}
                   onIncrement={this.handleIncrease}
-                  onDel={this.handelDelete}
+                  onDel={this.handelInCartChange}
                   onReset={this.handleReset}
                 />
               </main>
+            }
+          />
+          <Route
+            path="/menu"
+            element={
+              <Menu
+                allProducts={this.state.products}
+                onClick={this.handelInCartChange}
+              />
             }
           />
           <Route path="/notfound" element={<NotFound />} />

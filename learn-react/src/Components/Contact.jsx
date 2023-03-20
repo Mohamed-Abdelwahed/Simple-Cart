@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
 
-class Conatct extends Component {
-    constructor(props) {
-        super(props);
-    }
-    state = {  }
-    render() { 
+const Conatct =  ()=> {
+    
+    
+    
         return ( <>
-        
           <h1>Conatct</h1>
         </>  );
-    }
+    
 }
  
 export default Conatct;

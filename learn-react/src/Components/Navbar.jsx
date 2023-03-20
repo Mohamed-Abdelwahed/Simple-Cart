@@ -32,6 +32,11 @@ const Navbar = props => {
                     Shopping Cart
                   </NavLink>
                 </li>
+                <li className="nav-item ">
+                  <NavLink className="nav-link " to="/menu">
+                    Menu
+                  </NavLink>
+                </li>
               </ul>
             </div>
 
